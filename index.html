@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power Quality Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f1ede3; --card:#faf7ee; --ink:#20261f; --muted:#5a6053; --faint:#7c837a;
+  --line:#d8d2c2; --grid:#e3ddcd; --trace:#3f5c46; --sand:#756434;
+  --display:'Space Grotesk',system-ui,sans-serif; --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:var(--body);line-height:1.5;
+  background-color:var(--paper);
+  /* chart-recorder graph paper */
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+
+/* Header */
+header{padding:clamp(2rem,5vw,3.25rem) 0 2rem}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,1.3rem + 3vw,3.25rem);letter-spacing:-.02em;line-height:1.05;margin:0}
+.sub{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.6rem}
+.live{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--muted)}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--trace);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* Charts */
+.view{display:grid;margin-bottom:2.25rem;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+@media (max-width:1000px){.view{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.view{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.7rem 1rem;border-bottom:1px solid var(--line)}
+.ph span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ph b{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--trace);white-space:nowrap}
+.ph b small{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint);margin-left:.2rem}
+iframe{display:block;width:100%;height:250px;border:0;background:#fff}
+
+h2{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);
+  display:flex;align-items:center;gap:1rem;margin:0 0 1rem}
+h2::after{content:"";flex:1;height:1px;background:#a9a794}
+
+/* Footer */
+footer{padding:2rem 0 2.5rem;margin-top:1.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--trace);text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="top">
+    <div>
+      <h1>Power Quality Analytics</h1>
+      <div class="sub">Chile UPS vs Austria 3-phase smart meter · analysed hourly</div>
+    </div>
+    <div class="live" id="stamp">Live</div>
+  </div>
+</header>
+
+<main>
+  <!-- Chile UPS: fields 1-4 -->
+  <h2>Chile · UPS</h2>
+  <section class="view" id="ups">
+    <div class="panel"><div class="ph"><span>Apparent power</span><b data-f="1" data-u="VA">--</b></div>
+      <iframe loading="lazy" title="UPS apparent power" src="https://thingspeak.com/channels/3590491/charts/1?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=VA"></iframe></div>
+    <div class="panel"><div class="ph"><span>Power factor</span><b data-f="2" data-d="3">--</b></div>
+      <iframe loading="lazy" title="UPS power factor" src="https://thingspeak.com/channels/3590491/charts/2?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=PF"></iframe></div>
+    <div class="panel"><div class="ph"><span>UPS losses</span><b data-f="3" data-u="W">--</b></div>
+      <iframe loading="lazy" title="UPS losses" src="https://thingspeak.com/channels/3590491/charts/3?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=W"></iframe></div>
+    <div class="panel"><div class="ph"><span>Voltage deviation</span><b data-f="4" data-d="2" data-u="%" data-s="1">--</b></div>
+      <iframe loading="lazy" title="UPS voltage deviation" src="https://thingspeak.com/channels/3590491/charts/4?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=%25"></iframe></div>
+  </section>
+
+  <!-- Austria smart meter: fields 5-8 -->
+  <h2>Austria · Smart meter</h2>
+  <section class="view" id="sm">
+    <div class="panel"><div class="ph"><span>Average phase voltage</span><b data-f="5" data-u="V">--</b></div>
+      <iframe loading="lazy" title="Average phase voltage" src="https://thingspeak.com/channels/3590491/charts/5?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=V"></iframe></div>
+    <div class="panel"><div class="ph"><span>Voltage unbalance</span><b data-f="6" data-d="2" data-u="%">--</b></div>
+      <iframe loading="lazy" title="Voltage unbalance" src="https://thingspeak.com/channels/3590491/charts/6?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=%25"></iframe></div>
+    <div class="panel"><div class="ph"><span>Voltage deviation</span><b data-f="7" data-d="2" data-u="%" data-s="1">--</b></div>
+      <iframe loading="lazy" title="Smart meter voltage deviation" src="https://thingspeak.com/channels/3590491/charts/7?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=%25"></iframe></div>
+    <div class="panel"><div class="ph"><span>Net power</span><b data-f="8" data-u="W">--</b></div>
+      <iframe loading="lazy" title="Net power" src="https://thingspeak.com/channels/3590491/charts/8?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=W"></iframe></div>
+  </section>
+
+  <!-- Comparison -->
+  <h2>Comparison · voltage deviation</h2>
+  <section class="view" id="cmp">
+    <div class="panel"><div class="ph"><span>Chile · voltage deviation (220 V)</span><b data-f="4" data-d="2" data-u="%" data-s="1">--</b></div>
+      <iframe loading="lazy" title="Chile voltage deviation" src="https://thingspeak.com/channels/3590491/charts/4?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=%25"></iframe></div>
+    <div class="panel"><div class="ph"><span>Austria · voltage deviation (230 V)</span><b data-f="7" data-d="2" data-u="%" data-s="1">--</b></div>
+      <iframe loading="lazy" title="Austria voltage deviation" src="https://thingspeak.com/channels/3590491/charts/7?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=+&type=line&yaxis=%25"></iframe></div>
+    <!-- Add MATLAB Visualization plots here (Step 5):
+    <div class="panel"><div class="ph"><span>Two-week comparison</span></div>
+      <iframe loading="lazy" title="Comparison plot" src="PASTE-VISUALIZATION-URL"></iframe></div>
+    -->
+  </section>
+
+  <!-- Raw source data -->
+  <h2>Raw source data</h2>
+  <section class="view" id="raw">
+    <div class="panel"><div class="ph"><span>Chile UPS · input voltage</span></div>
+      <iframe loading="lazy" title="UPS input voltage" src="https://thingspeak.com/channels/3055790/charts/2?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=+&type=line&yaxis=V"></iframe></div>
+    <div class="panel"><div class="ph"><span>Chile UPS · output power</span></div>
+      <iframe loading="lazy" title="UPS output power" src="https://thingspeak.com/channels/3055790/charts/4?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=+&type=line&yaxis=W"></iframe></div>
+    <div class="panel"><div class="ph"><span>Austria smart meter · L1 voltage</span></div>
+      <iframe loading="lazy" title="Phase L1 voltage" src="https://thingspeak.com/channels/1816602/charts/6?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=+&type=line&yaxis=V"></iframe></div>
+    <div class="panel"><div class="ph"><span>Austria smart meter · net power</span></div>
+      <iframe loading="lazy" title="Net power raw" src="https://thingspeak.com/channels/1816602/charts/5?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=+&type=line&yaxis=W"></iframe></div>
+  </section>
+</main>
+
+<footer>
+  <span>BEE3033 · Aloraini Abdulhakim · Mohanad Baqais</span>
+  <span>
+    <a href="https://thingspeak.mathworks.com/channels/3590491" target="_blank" rel="noopener">Our channel ↗</a> ·
+    <a href="https://thingspeak.mathworks.com/channels/3055790" target="_blank" rel="noopener">UPS source ↗</a> ·
+    <a href="https://thingspeak.mathworks.com/channels/1816602" target="_blank" rel="noopener">Smart meter source ↗</a>
+  </span>
+</footer>
+
+</div>
+
+<script>
+// Latest value in each chart header
+(function(){
+  fetch('https://api.thingspeak.com/channels/3590491/feeds/last.json')
+    .then(r=>{if(!r.ok)throw 0;return r.json()})
+    .then(d=>{
+      document.querySelectorAll('.ph b[data-f]').forEach(el=>{
+        const v=parseFloat(d['field'+el.dataset.f]); if(isNaN(v))return;
+        let t=v.toFixed(el.dataset.d?+el.dataset.d:1); if(el.dataset.s&&v>0)t='+'+t;
+        el.innerHTML=t+(el.dataset.u?'<small>'+el.dataset.u+'</small>':'');
+      });
+      const t=new Date(d.created_at);
+      document.getElementById('stamp').textContent='Updated '+t.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    })
+    .catch(()=>{});
+})();
+</script>
+</body>
+</html>
