@@ -2,7 +2,7 @@
 
 An IoT analytics project for BEE3033 Data Communication & Networks at UCSI University. It reads two public ThingSpeak channels every hour, runs power quality calculations on them in MATLAB, and shows the results on a web page.
 
-**Live page:** https://aaloraini.github.io/Power-Quality-Analytics/
+**Live page:** https://aaloraini.com/Power-Quality-Analytics/
 
 ## What it does
 
