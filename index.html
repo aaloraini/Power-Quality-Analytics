@@ -72,6 +72,12 @@ footer a:hover{text-decoration:underline}
 
 <main>
   <!-- Chile UPS: fields 1-4 -->
+  <h2>Comparison · voltage deviation</h2>
+  <section class="view" id="cmp">
+    <div class="panel wide"><div class="ph"><span>Voltage deviation · Chile (220 V) vs Austria (230 V)</span></div>
+      <iframe loading="lazy" title="Voltage deviation comparison" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690948?size=iframe"></iframe></div>
+  </section>
+
   <h2>Chile · UPS</h2>
   <section class="view" id="ups">
     <div class="panel"><div class="ph"><span>Apparent power</span><b data-f="1" data-u="VA">--</b></div>
@@ -98,24 +104,7 @@ footer a:hover{text-decoration:underline}
   </section>
 
   <!-- Comparison -->
-  <h2>Comparison · voltage deviation</h2>
-  <section class="view" id="cmp">
-    <div class="panel wide"><div class="ph"><span>Voltage deviation · Chile (220 V) vs Austria (230 V)</span></div>
-      <iframe loading="lazy" title="Voltage deviation comparison" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690948?size=iframe"></iframe></div>
-  </section>
 
-  <!-- Raw source data -->
-  <h2>Raw source data</h2>
-  <section class="view" id="raw">
-    <div class="panel"><div class="ph"><span>Chile UPS · input voltage</span></div>
-      <iframe loading="lazy" title="UPS input voltage" src="https://thingspeak.com/channels/3055790/charts/2?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=%E2%80%8B&type=line&yaxis=V"></iframe></div>
-    <div class="panel"><div class="ph"><span>Chile UPS · output power</span></div>
-      <iframe loading="lazy" title="UPS output power" src="https://thingspeak.com/channels/3055790/charts/4?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=%E2%80%8B&type=line&yaxis=W"></iframe></div>
-    <div class="panel"><div class="ph"><span>Austria smart meter · L1 voltage</span></div>
-      <iframe loading="lazy" title="Phase L1 voltage" src="https://thingspeak.com/channels/1816602/charts/6?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=%E2%80%8B&type=line&yaxis=V"></iframe></div>
-    <div class="panel"><div class="ph"><span>Austria smart meter · net power</span></div>
-      <iframe loading="lazy" title="Net power raw" src="https://thingspeak.com/channels/1816602/charts/5?bgcolor=%23ffffff&color=%23756434&dynamic=true&results=240&title=%E2%80%8B&type=line&yaxis=W"></iframe></div>
-  </section>
 </main>
 
 <footer>

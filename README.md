@@ -91,6 +91,16 @@ EN 50160 sets a limit of 2%.
 
 Each plot covers the last 14 days and shows the mean, minimum and maximum in its title.
 
+## Web page
+
+`index.html` shows the 9 plots in three groups:
+
+1. Comparison: Chile and Austria voltage deviation on one plot
+2. Chile UPS: Fields 1 to 4
+3. Austria smart meter: Fields 5 to 8
+
+Each panel header also shows the latest hourly value, read from the channel's public API when the page loads.
+
 ## Repository layout
 
 ```
