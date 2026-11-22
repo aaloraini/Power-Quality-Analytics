@@ -42,6 +42,9 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,1.3rem + 3vw,
 .ph b{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--trace);white-space:nowrap}
 .ph b small{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint);margin-left:.2rem}
 iframe{display:block;width:100%;height:280px;border:0;background:#fff}
+.panel:has(iframe.viz){background:#fff}
+iframe.viz{width:450px;max-width:100%;height:262px;margin:10px auto}
+.panel.wide{grid-column:1 / -1}
 
 h2{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);
   display:flex;align-items:center;gap:1rem;margin:0 0 1rem}
@@ -72,39 +75,33 @@ footer a:hover{text-decoration:underline}
   <h2>Chile · UPS</h2>
   <section class="view" id="ups">
     <div class="panel"><div class="ph"><span>Apparent power</span><b data-f="1" data-u="VA">--</b></div>
-      <iframe loading="lazy" title="UPS apparent power" src="https://thingspeak.com/channels/3590491/charts/1?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=VA"></iframe></div>
+      <iframe loading="lazy" title="UPS apparent power" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690939?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>Power factor</span><b data-f="2" data-d="3">--</b></div>
-      <iframe loading="lazy" title="UPS power factor" src="https://thingspeak.com/channels/3590491/charts/2?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=PF"></iframe></div>
+      <iframe loading="lazy" title="UPS power factor" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690940?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>UPS losses</span><b data-f="3" data-u="W">--</b></div>
-      <iframe loading="lazy" title="UPS losses" src="https://thingspeak.com/channels/3590491/charts/3?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=W"></iframe></div>
+      <iframe loading="lazy" title="UPS losses" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690941?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>Voltage deviation</span><b data-f="4" data-d="2" data-u="%" data-s="1">--</b></div>
-      <iframe loading="lazy" title="UPS voltage deviation" src="https://thingspeak.com/channels/3590491/charts/4?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=%25"></iframe></div>
+      <iframe loading="lazy" title="UPS voltage deviation" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690942?size=iframe"></iframe></div>
   </section>
 
   <!-- Austria smart meter: fields 5-8 -->
   <h2>Austria · Smart meter</h2>
   <section class="view" id="sm">
     <div class="panel"><div class="ph"><span>Average phase voltage</span><b data-f="5" data-u="V">--</b></div>
-      <iframe loading="lazy" title="Average phase voltage" src="https://thingspeak.com/channels/3590491/charts/5?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=V"></iframe></div>
+      <iframe loading="lazy" title="Average phase voltage" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690943?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>Voltage unbalance</span><b data-f="6" data-d="2" data-u="%">--</b></div>
-      <iframe loading="lazy" title="Voltage unbalance" src="https://thingspeak.com/channels/3590491/charts/6?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=%25"></iframe></div>
+      <iframe loading="lazy" title="Voltage unbalance" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690944?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>Voltage deviation</span><b data-f="7" data-d="2" data-u="%" data-s="1">--</b></div>
-      <iframe loading="lazy" title="Smart meter voltage deviation" src="https://thingspeak.com/channels/3590491/charts/7?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=%25"></iframe></div>
+      <iframe loading="lazy" title="Smart meter voltage deviation" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690945?size=iframe"></iframe></div>
     <div class="panel"><div class="ph"><span>Net power</span><b data-f="8" data-u="W">--</b></div>
-      <iframe loading="lazy" title="Net power" src="https://thingspeak.com/channels/3590491/charts/8?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=W"></iframe></div>
+      <iframe loading="lazy" title="Net power" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690946?size=iframe"></iframe></div>
   </section>
 
   <!-- Comparison -->
   <h2>Comparison · voltage deviation</h2>
   <section class="view" id="cmp">
-    <div class="panel"><div class="ph"><span>Chile · voltage deviation (220 V)</span><b data-f="4" data-d="2" data-u="%" data-s="1">--</b></div>
-      <iframe loading="lazy" title="Chile voltage deviation" src="https://thingspeak.com/channels/3590491/charts/4?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=%25"></iframe></div>
-    <div class="panel"><div class="ph"><span>Austria · voltage deviation (230 V)</span><b data-f="7" data-d="2" data-u="%" data-s="1">--</b></div>
-      <iframe loading="lazy" title="Austria voltage deviation" src="https://thingspeak.com/channels/3590491/charts/7?bgcolor=%23ffffff&color=%233f5c46&dynamic=true&results=336&title=%E2%80%8B&type=line&yaxis=%25"></iframe></div>
-    <!-- Add MATLAB Visualization plots here (Step 5):
-    <div class="panel"><div class="ph"><span>Two-week comparison</span></div>
-      <iframe loading="lazy" title="Comparison plot" src="PASTE-VISUALIZATION-URL"></iframe></div>
-    -->
+    <div class="panel wide"><div class="ph"><span>Voltage deviation · Chile (220 V) vs Austria (230 V)</span></div>
+      <iframe loading="lazy" title="Voltage deviation comparison" class="viz" src="https://thingspeak.mathworks.com/apps/matlab_visualizations/690948?size=iframe"></iframe></div>
   </section>
 
   <!-- Raw source data -->
